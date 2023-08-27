@@ -24,11 +24,13 @@ app.get('/tasks', async(req, res) => {
 })
 
 app.post('/add', async(req, res) => {
-    modal.create({task : req.body.task}).then(() => console.log('Created Successfully'))
+    modal.create({task : req.body.task}).then(() => {
+        res.status(200).send('created succesfully');
+    })
 })
 
 app.delete('/remove/:id', async(req, res) => {
-    await modal.findByIdAndDelete(req.params.id).then(() => console.log('Deleted Successfully'))
+    await modal.findByIdAndDelete(req.params.id).then(() => res.status(200).send('deleted'))
 })
 
 
